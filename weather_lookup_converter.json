@@ -1,0 +1,20 @@
+{
+  "snow_heavy": ["+SN"],
+  "snow_light": ["SG", "-SN"],
+  "snow": ["SN"],
+  "flurries": ["BLSN", "DR"],
+  "freezing_rain_heavy": ["+FZRA"],
+  "freezing_rain_light": ["-FZDZ"],
+  "freezing_rain": ["FZRA"],
+  "freezing_drizzle": ["FZDZ"],
+  "ice_pellets_heavy": ["+IC", "+PL", "+GR", "+GS"],
+  "ice_pellets_light": ["-IC", "-PL", "-GR", "-GS"],
+  "ice_pellets": ["IC", "PL", "GR", "GS"],
+  "tstorm": ["TS", "FC"],
+  "rain_heavy": ["+RA"],
+  "rain_light": ["-RA"],
+  "rain": ["RA"],
+  "drizzle": ["DZ", "BR", "PY"],
+  "fog_light": ["-FG", "-FU", "-VA", "-DU", "-HZ", "-PO", "-SQ", "-SS", "-DS"],
+  "fog": ["FG", "FU", "VA", "DU", "HZ", "PO", "SQ", "SS", "DS"]
+}

@@ -1,0 +1,26 @@
+{
+  "VV": {
+    "cloud_str": "cloudy",
+    "cloud_cover": 1.00
+  },
+  "OVC": {
+    "cloud_str": "cloudy",
+    "cloud_cover": 1.00
+  },
+  "BKN": {
+    "cloud_str": "mostly_cloudy",
+    "cloud_cover": 0.80
+  },
+  "SCT": {
+    "cloud_str": "partly_cloudy",
+    "cloud_cover": 0.50
+  },
+  "FEW": {
+    "cloud_str": "mostly_clear",
+    "cloud_cover": 0.30
+  },
+  "CLR": {
+    "cloud_str": "clear",
+    "cloud_cover": 0.00
+  }
+}
