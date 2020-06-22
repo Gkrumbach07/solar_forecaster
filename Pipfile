@@ -12,6 +12,10 @@ numpy = "*"
 pandas = "*"
 matplotlib = "*"
 scipy = "*"
+altair = "*"
+vega-datasets = "*"
+ephem = "*"
+tqdm = "*"
 
 [requires]
 python_version = "3.7"
