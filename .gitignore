@@ -1,3 +1,5 @@
 /LCD_Data/**/*.csv
 out.csv
 Pipfile.lock
+/**/.DS_Store
+/.ipynb_checkpoints/*
