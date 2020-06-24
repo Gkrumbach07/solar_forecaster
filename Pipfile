@@ -7,14 +7,9 @@ verify_ssl = true
 
 [packages]
 jupyter = "*"
-h5pyd = "*"
-numpy = "*"
 pandas = "*"
-matplotlib = "*"
-scipy = "*"
 altair = "*"
 vega-datasets = "*"
-ephem = "*"
 tqdm = "*"
 
 [requires]
