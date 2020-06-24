@@ -1,6 +1,5 @@
-# Solar_Forcaster
-A ML model that predicts solar output based on predicted weather.
-
+# Solar Forecaster
+This notebook is intended to be a first step in gathering data for a solar energy forecasting model. The final dataset will consist of hourly weather data and matching hourly solar data for multiple weather stations. This dataset can then be used for analytical analysis or to train a machine learning model.
 
 ## Install the prerequisites
 
