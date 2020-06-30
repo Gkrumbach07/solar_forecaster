@@ -4,6 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pvlib = "*"
 
 [packages]
 jupyter = "*"
@@ -11,6 +12,14 @@ pandas = "*"
 altair = "*"
 vega-datasets = "*"
 tqdm = "*"
+sklearn = "*"
+pvlib = "*"
+netcdf4 = "*"
+siphon = "*"
+tables = "*"
+geonames = "*"
+timezonefinder = "*"
+fastparquet = "*"
 
 [requires]
 python_version = "3.7"
