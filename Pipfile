@@ -20,6 +20,8 @@ tables = "*"
 geonames = "*"
 timezonefinder = "*"
 fastparquet = "*"
+cloudpickle = "*"
+ipyleaflet = "*"
 
 [requires]
 python_version = "3.7"

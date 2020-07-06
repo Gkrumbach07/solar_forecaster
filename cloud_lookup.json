@@ -1,23 +1,23 @@
 {
   "VV": {
-    "cloud_str": "cloudy",
+    "cloud_str": "overcast",
     "cloud_cover": 1.00
   },
   "OVC": {
     "cloud_str": "cloudy",
-    "cloud_cover": 1.00
+    "cloud_cover": 0.80
   },
   "BKN": {
     "cloud_str": "mostly_cloudy",
-    "cloud_cover": 0.80
+    "cloud_cover": 0.60
   },
   "SCT": {
     "cloud_str": "partly_cloudy",
-    "cloud_cover": 0.50
+    "cloud_cover": 0.30
   },
   "FEW": {
     "cloud_str": "mostly_clear",
-    "cloud_cover": 0.30
+    "cloud_cover": 0.20
   },
   "CLR": {
     "cloud_str": "clear",
