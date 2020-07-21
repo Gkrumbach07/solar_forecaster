@@ -3,8 +3,8 @@ out.csv
 Pipfile.lock
 .DS_Store
 /.ipynb_checkpoints/*
-solar_cleaned.parquet
 feature_pipeline.sav
 rfc.sav
 tree.dot
+solar_removed.parquet
 
