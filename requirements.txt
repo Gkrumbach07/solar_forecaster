@@ -47,7 +47,6 @@ urllib3==1.25.9
 vega-datasets==0.8.0
 xgboost==1.1.0
 -i https://pypi.org/simple
-altair==4.0.0
 appnope==0.1.0 ; platform_system == 'Darwin'
 attrs==19.3.0
 backcall==0.2.0
