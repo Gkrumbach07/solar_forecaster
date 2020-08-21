@@ -24,9 +24,9 @@ oc new-app quay.io/gkrumbach07/nachless:latest-6~https://github.com/Gkrumbach07/
 oc expose svc/model
 ```
 # Further Depolyment
-These next steps use this model for a few example applications, but this model can be used like any other REST api.
+These next steps use this model for a few example applications, but this model can be used like any other REST API.
 ## Web Application
-This will be a single page application run React. We will still want to set up a backend to clean up any computations that would of had to been done in the front end.
+This will be a single page application using React. We will still want to set up a backend to clean up any computations that would of had to been done in the front end.
 ### Backend
  First we deploy the [back end](https://github.com/Gkrumbach07/openshift-flask-api) which is a simple Flask server. Follow the link to the backend git repo and follow through the steps to deploy the backend to OpenShift. Make sure the name used for the service is *backend*.
 ### Front End
