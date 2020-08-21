@@ -31,3 +31,7 @@ This will be a single page application using React. We will still want to set up
  First we deploy the [back end](https://github.com/Gkrumbach07/openshift-flask-api) which is a simple Flask server. Follow the link to the backend git repo and follow through the steps to deploy the backend to OpenShift. Make sure the name used for the service is *backend*.
 ### Front End
 The front end of the web application uses React and only takes two parameter to set up, name and backend url. Follow the [link](https://github.com/Gkrumbach07/solar-forecaster-web-app/blob/master/README.md) to the front end git repo and follow through the steps to deploy it to OpenShift. Make sure the name used is *client*.
+## Kafka Streaming
+The next example application is a Kafka streaming service. This will consists of a Kafka producer, consumer, and a Strimzi operator.
+### Strimzi
+In OpenShift 4 web console, navigate to the operators tab
