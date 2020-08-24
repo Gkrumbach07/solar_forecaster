@@ -34,4 +34,42 @@ The front end of the web application uses React and only takes two parameter to 
 ## Kafka Streaming
 The next example application is a Kafka streaming service. This will consists of a Kafka producer, consumer, and a Strimzi operator.
 ### Strimzi
-In OpenShift 4 web console, navigate to the operators tab
+First we need to deploy Strimzi and the best way to do this in OpenShift 4 is to use the the web console. In the web console, navigate to the operators tab and search for the Strimzi operator. Install the operator and deploy the *Kafka* instance using the default settings.
+### Kafka Producer
+Next we create the Kafka producer. We will use a cron-job to accomplish this. We will run through a series of commands to create the build config and cron config files. First we need to create a service account that will run the cron job. The full in depth process can be found [here](https://github.com/clcollins/openshift-cronjob-example), but the following commands are all that is needed to deploy.
+```
+oc create serviceaccount py-cron
+
+oc create role pod-lister --verb=list --resource=pods,namespaces
+oc policy add-role-to-user pod-lister --role-namespace=py-cron system:serviceaccounts:py-cron:py-cron
+```
+Next we need to create the S2I build config. This file is available in the [git repo](https://github.com/Gkrumbach07/kafka-openshift-python-emitter) if changes need to be made or if you would like to customize the kafka producer.
+```
+oc create imagestream py-cron
+
+oc create -f https://raw.githubusercontent.com/Gkrumbach07/kafka-openshift-python-emitter/master/buildConfig.yml
+```
+Here we set the environment variables. Be sure to set the `KAFKA_BROKERS` variable to the cprrect name. This name can be found in the resources tab of the Strimzi operator's instance. It will be a service where its name ends in *brokers*.
+```
+oc set env BuildConfig/py-cron KAFKA_BROKERS=__INSERT_KAFKA_BROKER__:9092
+oc set env BuildConfig/py-cron KAFKA_TOPIC=forecast
+oc set env BuildConfig/py-cron USER_FUNCTION_URI=https://github.com/Gkrumbach07/kafka-openshift-python-emitter/blob/master/examples/emitter.py
+```
+Then run the command to start the build and create the cron-job. You may edit the cron-job config file to change how often it will run.
+```
+oc start-build BuildConfig/py-cron
+
+oc create -f https://raw.githubusercontent.com/Gkrumbach07/kafka-openshift-python-emitter/master/cronJob.yml
+```
+### Kafka Consumer
+Finally we can deploy the Kafka consumer which will read the Kafka topic, in the exmaple it is *forecast*, and expose that for Prometheus. Make sure you use the same Kafka broker and topic name for the environment variables. You can find more infomation on this in the [git repo](https://github.com/Gkrumbach07/flask-kafka-openshift-python-listener). Then we expose the listener so Prometheus can find it.
+```
+oc new-app centos/python-36-centos7~https://github.com/Gkrumbach07/flask-kafka-openshift-python-listener.git \
+  -e KAFKA_BROKERS=__INSERT_KAFKA_BROKER__:9092 \
+  -e KAFKA_TOPIC=forecast\
+  --name=listener
+
+oc expose svc/listener
+```
+### Wrapping up
+Now you can [deploy](https://www.robustperception.io/openshift-and-prometheus) an instance of Prometheus to OpenShift and have it listen to the route you just exposed.
