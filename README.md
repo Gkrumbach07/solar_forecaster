@@ -72,4 +72,46 @@ oc new-app centos/python-36-centos7~https://github.com/Gkrumbach07/flask-kafka-o
 oc expose svc/listener
 ```
 ### Wrapping up
-Now you can [deploy](https://www.robustperception.io/openshift-and-prometheus) an instance of Prometheus to OpenShift and have it listen to the route you just exposed.
+Now you can [deploy](https://www.robustperception.io/openshift-and-prometheus) an instance of Prometheus to OpenShift and have it listen to the route you just exposed. First we need to create and expose prometheus. The next steps can be found in the link but for ease of use they are outlined below.
+```
+oc new-app prom/prometheus
+oc expose service prometheus
+```
+Next we will create the ConfigMap that Prometheus will use. This is where we put the url for our Kafka listener service we made in the last step. You can get this url by using the `oc get routes` and noting the *listener* host. Plug this into the following command.
+```
+cat <<'EOF' > prometheus.yml
+global:
+  scrape_interval:     5s 
+  evaluation_interval: 5s 
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090', '__LISTENER_HOST_URL__']
+      
+EOF
+
+oc create configmap prom-config-example --from-file=prometheus.yml
+```
+Next we'll need to edit the deployment configuration for Prometheus to include this ConfigMap.
+```
+oc edit dc/prometheus
+```
+There's two parts we need to add in here.
+
+The first is a new volume name with our ConfigMap and the second is the volumeMount which will give the path of where the prometheus.yml file will be.
+
+First let's add the new volume:
+```
+ - name: prom-config-example-volume
+   configMap:
+     name: prom-config-example
+     defaultMode: 420
+```
+Now we'll add the new volumeMount:
+
+```
+- name: prom-config-example-volume
+  mountPath: /etc/prometheus/
+```
+Once saved, Prometheus should be up and running and scrapping metrics.
